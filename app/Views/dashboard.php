@@ -1,3 +1,5 @@
+<?php helper('text'); ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -117,8 +119,6 @@
       Selamat Datang, <?= session()->get('name') ?? 'Pengunjung' ?>!
     </h2>
 </section>
-
-<?php helper('text'); ?>
 
 <!-- SEMUA PRODUK -->
 <section class="py-5 bg-light">
