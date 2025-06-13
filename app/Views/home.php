@@ -95,10 +95,24 @@
       <ul class="navbar-nav me-3">
         <!-- Tambahkan item menu lain jika diperlukan -->
       </ul>
-      <div class="d-flex">
-        <a href="/login" class="btn btn-outline-light me-2 rounded-pill px-4">Login</a>
-        <a href="/register" class="btn btn-light text-maroon rounded-pill px-4">Daftar</a>
-      </div>
+      <?php if (session()->get('isLoggedIn')): ?>
+  <div class="dropdown">
+    <button class="btn btn-outline-light rounded-pill dropdown-toggle px-4" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <?= esc(session()->get('user_name')) ?>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end">
+      <li><a class="dropdown-item" href="<?= base_url('riwayat') ?>">Riwayat Transaksi</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item text-danger" href="<?= base_url('logout') ?>">Logout</a></li>
+    </ul>
+  </div>
+<?php else: ?>
+  <div class="d-flex">
+    <a href="/login" class="btn btn-outline-light me-2 rounded-pill px-4">Login</a>
+    <a href="/register" class="btn btn-light text-maroon rounded-pill px-4">Daftar</a>
+  </div>
+<?php endif; ?>
+
     </div>
   </div>
 </nav>

@@ -114,40 +114,35 @@
 <section class="py-5">
   <div class="container">
     <h2 class="fw-bold">
-  Selamat Datang, <?= session()->get('name') ?? 'Pengunjung' ?>!
-</h2>
+      Selamat Datang, <?= session()->get('name') ?? 'Pengunjung' ?>!
+    </h2>
+</section>
 
+<?php helper('text'); ?>
 
-    <div class="row g-4 justify-content-center">
-      <div class="col-md-4" data-aos="zoom-in">
-        <div class="card shadow card-hover h-100 text-center p-4 rounded-4">
-          <i class="fas fa-store fa-2x mb-3 text-maroon"></i>
-          <h5 class="card-title">Lihat Produk</h5>
-          <p>Telusuri koleksi sepatu terbaru kami.</p>
-          <a href="<?= base_url('/produk') ?>" class="btn btn-maroon rounded-pill">Lihat</a>
+<!-- SEMUA PRODUK -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-4" data-aos="fade-up">Semua Produk</h2>
+    <div class="row g-4">
+      <?php foreach ($products as $i => $product): ?>
+        <div class="col-md-3" data-aos="<?= $i % 2 === 0 ? 'fade-right' : 'fade-left' ?>" data-aos-delay="<?= $i * 100 ?>">
+          <div class="card shadow-sm h-100 rounded-4">
+            <img src="<?= base_url('images/' . $product['image']) ?>" class="card-img-top rounded-top-4" alt="<?= $product['name'] ?>">
+            <div class="card-body">
+              <h5 class="card-title"><?= esc($product['name']) ?></h5>
+              <p class="card-text small text-muted"><?= esc(word_limiter($product['description'], 10)) ?></p>
+              <p class="card-text fw-bold text-maroon">Rp <?= number_format($product['price'], 0, ',', '.') ?></p>
+              <p class="card-text"><small>Stok: <?= $product['stock'] ?></small></p>
+              <a href="#" class="btn btn-sm btn-outline-primary">Lihat Detail</a>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-        <div class="card shadow card-hover h-100 text-center p-4 rounded-4">
-          <i class="fas fa-shopping-cart fa-2x mb-3 text-maroon"></i>
-          <h5 class="card-title">Keranjang</h5>
-          <p>Periksa item yang ingin Anda beli.</p>
-          <a href="<?= base_url('/keranjang') ?>" class="btn btn-outline-maroon rounded-pill">Lihat</a>
-        </div>
-      </div>
-
-      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-        <div class="card shadow card-hover h-100 text-center p-4 rounded-4">
-          <i class="fas fa-clock-rotate-left fa-2x mb-3 text-maroon"></i>
-          <h5 class="card-title">Riwayat Transaksi</h5>
-          <p>Lihat pembelian sebelumnya dan statusnya.</p>
-          <a href="<?= base_url('/transaksi') ?>" class="btn btn-outline-secondary rounded-pill">Lihat</a>
-        </div>
-      </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>
+
 
 <!-- FOOTER -->
 <?= view('footer') ?>
