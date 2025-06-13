@@ -5,7 +5,8 @@ use CodeIgniter\Model;
 
 class ProductModel extends Model
 {
-    protected $table = 'products';
+    protected $table = 'products'; // atau nama tabelmu
     protected $primaryKey = 'id';
-    protected $allowedFields = ['name', 'description', 'price', 'image', 'stock', 'created_at'];
+    protected $allowedFields = ['name', 'description', 'price', 'stock', 'image']; // daftar kolom yang bisa dimasukkan
+    protected $useTimestamps = false; // atur ke true jika kamu pakai created_at & updated_at otomatis
 }
