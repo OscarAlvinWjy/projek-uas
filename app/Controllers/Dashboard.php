@@ -6,10 +6,11 @@ use App\Models\ProductModel;
 class Dashboard extends BaseController
 {
     public function index()
-    {
-        $productModel = new ProductModel();
-        $products = $productModel->findAll(); // ambil semua produk
+{
+    $model = new ProductModel();
+    $data['products'] = $model->findAll();
+    
+    return view('dashboard', $data);
+}
 
-        return view('dashboard', ['products' => $products]);
-    }
 }
