@@ -108,7 +108,7 @@
   <div class="content" data-aos="zoom-in">
     <h1>Selamat Datang di StepUP</h1>
     <p>Temukan sepatu pilihanmu dengan gaya terbaik!</p>
-    <a href="/produk" class="btn btn-warning btn-lg">Lihat Koleksi</a>
+    <a href="<?= site_url('dashboard') ?>" class="btn btn-warning btn-lg">Lihat Koleksi</a>
   </div>
 </section>
 
@@ -119,10 +119,10 @@
     <div class="row g-4">
       <?php
       $produk = [
-        ['Sepatu Sneakers Pria', 'sepatu1.jpg', 250000],
-        ['Sepatu Running Wanita', 'sepatu2.jpg', 275000],
-        ['Sepatu Casual Unisex', 'sepatu3.jpg', 300000],
-        ['Sepatu Olahraga Pro', 'sepatu4.jpg', 320000],
+        ['ADIDAS Forum Low Sneakers', 'sepatu1.png', 1800000],
+        ['NIKE Women Running Revolution 7 Road', 'sepatu2.png', 1400000],
+        ['NEW BALANCE Bb 100 White Burgundy', 'sepatu3.png', 1300000],
+        ['PUMA X Ray Youth Trainers', 'sepatu4.png', 1350000],
       ];
       foreach ($produk as $i => [$nama, $gambar, $harga]): ?>
         <div class="col-md-3" data-aos="<?= $i % 2 === 0 ? 'fade-right' : 'fade-left' ?>" data-aos-delay="<?= $i * 100 ?>">
