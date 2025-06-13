@@ -137,6 +137,7 @@
         ['NIKE Women Running Revolution 7 Road', 'sepatu2.png', 1400000],
         ['NEW BALANCE Bb 100 White Burgundy', 'sepatu3.png', 1300000],
         ['PUMA X Ray Youth Trainers', 'sepatu4.png', 1350000],
+        
       ];
       foreach ($produk as $i => [$nama, $gambar, $harga]): ?>
         <div class="col-md-3" data-aos="<?= $i % 2 === 0 ? 'fade-right' : 'fade-left' ?>" data-aos-delay="<?= $i * 100 ?>">
