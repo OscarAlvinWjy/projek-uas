@@ -108,7 +108,7 @@
   <div class="content" data-aos="zoom-in">
     <h1>Selamat Datang di StepUP</h1>
     <p>Temukan sepatu pilihanmu dengan gaya terbaik!</p>
-    <a href="/produk" class="btn btn-warning btn-lg">Lihat Koleksi</a>
+    <a href="<?= site_url('dashboard') ?>" class="btn btn-warning btn-lg">Lihat Koleksi</a>
   </div>
 </section>
 
