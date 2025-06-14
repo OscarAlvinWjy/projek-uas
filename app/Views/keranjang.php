@@ -60,9 +60,7 @@
     </table>
 
     <h4>Total: Rp <?= number_format($total, 0, ',', '.') ?></h4>
-      <form action="<?= base_url('/keranjang/checkout') ?>" method="post">
-     <?= csrf_field() ?>       <button type="submit" class="btn btn-success">Checkout</button>
-    </form>
+    <button class="btn btn-success">Checkout</button>
   <?php endif; ?>
 </div>
 
