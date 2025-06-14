@@ -63,6 +63,7 @@
     <form action="<?= base_url('/keranjang/checkout') ?>" method="post">
        <?= csrf_field() ?>
     <button class="btn btn-success">Checkout</button>
+    </form>
   <?php endif; ?>
 </div>
 
