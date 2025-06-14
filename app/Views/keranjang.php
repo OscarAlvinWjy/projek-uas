@@ -14,12 +14,12 @@
     <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
   <?php endif; ?>
 
-<!-- Tombol Kembali -->
+  <!-- Tombol Kembali -->
 <div class="container mt-4">
   <?php if ($keranjangFrom === 'detail' && $lastProductId): ?>
-    <a href="<?= base_url('/produk/' . $lastProductId) ?>" class="btn btn-secondary mb-4">Kembali</a>
+    <a href="<?= base_url('/produk/' . $lastProductId) ?>" class="btn btn-secondary mb-4">← Kembali ke Detail Produk</a>
   <?php else: ?>
-    <a href="<?= base_url('/dashboard') ?>" class="btn btn-secondary mb-4">Kembali</a>
+    <a href="<?= base_url('/dashboard') ?>" class="btn btn-secondary mb-4">← Kembali ke Dashboard</a>
   <?php endif; ?>
 </div>
 

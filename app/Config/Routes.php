@@ -16,8 +16,12 @@ $routes->get('/logout', 'Auth::logout');
 $routes->get('/produk/(:num)', 'Product::detail/$1');
 $routes->get('/keranjang', 'Cart::index');
 $routes->get('/keranjang/tambah/(:num)', 'Cart::add/$1');
-$routes->get('/keranjang/hapus/(:num)', 'Cart::remove/$1'); // opsional
+$routes->get('/keranjang/hapus/(:num)', 'Cart::remove/$1');
+$routes->get('/produk/(:num)', 'Product::detail/$1');
+
 $routes->get('/checkout', 'Cart::checkout');
 $routes->get('/pembayaran/(:num)', 'Cart::pembayaran/$1');
 $routes->post('/proses-bayar', 'Cart::prosesBayar');
 
+$routes->get('/checkout', 'Checkout::index', ['filter' => 'auth']); 
+$routes->post('/checkout/process', 'Checkout::processPayment');

@@ -26,6 +26,7 @@ public function index()
 }
 
 
+
 public function add($id)
 {
     $model = new ProductModel();
@@ -62,6 +63,7 @@ public function add($id)
 
     return redirect()->to('/keranjang')->with('success', 'Produk ditambahkan ke keranjang.');
 }
+
 
 
 
@@ -152,4 +154,3 @@ public function prosesBayar()
 }
 
 }
-
