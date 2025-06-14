@@ -17,4 +17,6 @@ $routes->get('/produk/(:num)', 'Product::detail/$1');
 $routes->get('/keranjang', 'Cart::index');
 $routes->get('/keranjang/tambah/(:num)', 'Cart::add/$1');
 $routes->get('/keranjang/hapus/(:num)', 'Cart::remove/$1'); // opsional
-
+$routes->post('/keranjang/checkout', 'Cart::checkout'); 
+$routes->get('/transaksi', 'Transaction::index', ['filter' => 'auth']); 
+$routes->get('/transaksi/(:num)', 'Transaction::detail/$1', ['filter' => 'auth']); 
