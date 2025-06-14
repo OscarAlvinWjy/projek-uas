@@ -1,4 +1,6 @@
-<?= $this->extend('layout') ?> <?= $this->section('content') ?>
+<?= $this->extend('layout') ?>
+
+<?= $this->section('content') ?>
     <div class="container py-5">
         <h2>Checkout</h2>
 
@@ -19,16 +21,12 @@
             <div class="checkout-grid">
                 <div class="checkout-main">
                     <div class="checkout-section">
-                        <h4>Informasi Pengiriman</h4>
-                        <p class="text-muted small">Informasi ini akan digunakan untuk pengiriman pesanan Anda dan tidak disimpan di profil Anda.</p>
-                        <div class="mb-3">
-                            <label for="shipping_address" class="form-label">Alamat Lengkap Pengiriman</label>
-                            <textarea class="form-control" id="shipping_address" name="shipping_address" rows="3" required><?= old('shipping_address') ?></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="shipping_phone" class="form-label">Nomor Telepon Penerima</label>
-                            <input type="text" class="form-control" id="shipping_phone" name="shipping_phone" value="<?= old('shipping_phone') ?>" required>
-                        </div>
+                        <h4>Alamat Pengiriman</h4>
+                        <div class="address-box">
+                            <strong><?= esc($pengguna['nama_lengkap']) ?> (+62<?= esc(substr($pengguna['no_telepon'], 1)) ?>)</strong>
+                            <p><?= esc($pengguna['alamat']) ?></p>
+                            <input type="hidden" name="alamat_pengiriman" value="<?= esc($pengguna['alamat']) ?>">
+                            </div>
                     </div>
 
                     <div class="checkout-section">
@@ -111,7 +109,7 @@
     </div>
 
     <style>
-        
+        /* Gaya CSS Anda tetap sama */
         .checkout-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
         .checkout-section { background: #fff; border: 1px solid #eee; border-radius: 5px; padding: 20px; margin-bottom: 20px; }
         .address-box { margin-bottom: 15px; } /* Tambahan margin */
@@ -142,6 +140,7 @@
             const summaryTotal = document.getElementById('summary-total');
             const biayaPengirimanInput = document.getElementById('biaya_pengiriman');
 
+            // Set nilai awal berdasarkan tombol radio yang dicentang
             const initialBiaya = parseFloat(document.querySelector('input[name="opsi_pengiriman"]:checked').dataset.harga);
             summaryPengiriman.textContent = 'Rp ' + initialBiaya.toLocaleString('id-ID');
             summaryTotal.textContent = 'Rp ' + (subtotalProduk + initialBiaya).toLocaleString('id-ID');
