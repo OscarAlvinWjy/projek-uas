@@ -6,32 +6,21 @@ use CodeIgniter\Model;
 
 class OrderModel extends Model
 {
-    protected $table      = 'orders';
+    protected $table = 'orders';
     protected $primaryKey = 'id';
-    protected $useAutoIncrement = true;
-    protected $returnType     = 'array';
-    protected $useSoftDeletes = false;
-    protected $allowedFields = ['user_id', 'order_date', 'total_price', 'status'];
-    protected bool $allowEmptyInserts = false;
+    protected $allowedFields = [
+        'user_id',
+        'order_date',
+        'total_price',
+        'status',
+        'shipping_address',   // <-- Tambahkan ini
+        'shipping_method',    // <-- Tambahkan ini
+        'shipping_cost',      // <-- Tambahkan ini
+        'payment_method'      
+    ];
 
     protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'order_date';
-    protected $updatedField  = null;
-    protected $deletedField  = null;
-
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
-
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    protected $updatedField  = null; // Or 'updated_at' if you have it
 }
