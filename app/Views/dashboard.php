@@ -11,17 +11,17 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #f8f9fa;
-      margin: 0;
-      padding: 0;
+      background-color: #f9f9f9;
     }
 
     .navbar {
       background-color: #800000;
+      transition: all 0.3s ease;
     }
 
     .navbar-brand img {
@@ -31,21 +31,6 @@
 
     .navbar .nav-link, .navbar .navbar-brand {
       color: white !important;
-    }
-
-    .card-hover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      transition: 0.3s ease-in-out;
-    }
-
-    .btn-maroon {
-      background-color: #800000;
-      color: white;
-    }
-
-    .btn-maroon:hover {
-      background-color: #660000;
     }
 
     .btn-outline-maroon {
@@ -58,70 +43,159 @@
       background-color: #800000;
       color: #fff;
     }
+
+    .text-maroon {
+      color: #800000;
+    }
+
+    footer {
+      background-color: #800000;
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    .footer-links a {
+      color: #f1f1f1;
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    #promoCarousel img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+}
+
+#promoCarousel {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.hero-text {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
   </style>
 </head>
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg sticky-top">
+<nav class="navbar navbar-expand-lg sticky-top shadow-sm py-3 animate__animated animate__fadeInDown" style="font-size: 1.05rem; background-color: #800000;">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center fw-bold text-white" href="<?= base_url('/') ?>">
-      <img src="<?= base_url('logo.png') ?>" alt="Logo" class="me-2"> StepUP
+      <img src="<?= base_url('logo.png') ?>" alt="Logo" style="height: 50px; margin-right: 10px;"> StepUP
     </a>
-
     <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav align-items-center">
-        <!-- Ikon keranjang -->
-        <li class="nav-item me-3 position-relative">
-          <a href="<?= base_url('/keranjang?from=dashboard') ?>" class="nav-link text-white">
-            <i class="fas fa-shopping-cart"></i>
-            <?php $jumlah = session()->get('cart_count') ?? 0; ?>
-            <?php if ($jumlah > 0): ?>
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
-                <?= $jumlah ?>
-              </span>
-            <?php endif; ?>
-          </a>
-        </li>
 
-        <!-- Dropdown user -->
-        <?php if(session()->get('logged_in')): ?>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
-              <?= esc(session('name')) ?>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="<?= base_url('/transaksi') ?>">Riwayat Transaksi</a></li>
-              <li><a class="dropdown-item" href="<?= base_url('/logout') ?>">Logout</a></li>
-            </ul>
-          </li>
-        <?php else: ?>
-          <li class="nav-item me-2">
-            <a href="/login" class="btn btn-outline-light rounded-pill px-4">Login</a>
-          </li>
-          <li class="nav-item">
-            <a href="/register" class="btn btn-light text-maroon rounded-pill px-4">Daftar</a>
-          </li>
-        <?php endif; ?>
+  <!-- Kategori Dropdown -->
+  <li class="nav-item dropdown me-3">
+    <a class="nav-link dropdown-toggle text-white fw-semibold" href="#" role="button" data-bs-toggle="dropdown">
+      <i class="fas fa-tags me-1"></i> Kategori
+    </a>
+    <ul class="dropdown-menu animate__animated animate__fadeIn">
+      <li><a class="dropdown-item" href="<?= base_url('/kategori/pria') ?>"><i class="fas fa-mars me-2"></i>Pria</a></li>
+      <li><a class="dropdown-item" href="<?= base_url('/kategori/wanita') ?>"><i class="fas fa-venus me-2"></i>Wanita</a></li>
+    </ul>
+  </li>
+
+  <!-- Tentang Kami -->
+  <li class="nav-item me-3">
+    <a class="nav-link text-white fw-semibold" href="<?= base_url('/tentang') ?>">
+      <i class="fas fa-info-circle me-1"></i> Tentang
+    </a>
+  </li>
+
+  <!-- Kontak -->
+  <li class="nav-item me-3">
+    <a class="nav-link text-white fw-semibold" href="<?= base_url('/kontak') ?>">
+      <i class="fas fa-phone me-1"></i> Kontak
+    </a>
+  </li>
+
+  <!-- Pesanan -->
+  <li class="nav-item me-3">
+    <a class="nav-link text-white fw-semibold" href="<?= base_url('/transaksi') ?>">
+      <i class="fas fa-box me-1"></i> Pesanan
+    </a>
+  </li>
+
+  <!-- Admin/User Dropdown -->
+  <?php if(session()->get('logged_in')): ?>
+    <li class="nav-item dropdown me-3">
+      <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+        <i class="fas fa-user me-1"></i><?= esc(session('name')) ?>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end animate__animated animate__fadeIn">
+        <li><a class="dropdown-item" href="<?= base_url('/transaksi') ?>"><i class="fas fa-clock-rotate-left me-2"></i>Riwayat</a></li>
+        <li><a class="dropdown-item" href="<?= base_url('/logout') ?>"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
       </ul>
+    </li>
+  <?php else: ?>
+    <li class="nav-item me-2">
+      <a href="/login" class="btn btn-outline-light rounded-pill px-4">Login</a>
+    </li>
+    <li class="nav-item me-3">
+      <a href="/register" class="btn btn-light text-maroon rounded-pill px-4">Daftar</a>
+    </li>
+  <?php endif; ?>
+
+  <!-- Keranjang (lebih besar & setelah user) -->
+  <li class="nav-item position-relative">
+    <a href="<?= base_url('/keranjang?from=dashboard') ?>" class="nav-link text-white" style="font-size: 1.35rem;">
+      <i class="fas fa-shopping-cart"></i>
+      <?php $jumlah = session()->get('cart_count') ?? 0; ?>
+      <?php if ($jumlah > 0): ?>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
+          <?= $jumlah ?>
+        </span>
+      <?php endif; ?>
+    </a>
+  </li>
+</ul>
+
     </div>
   </div>
 </nav>
 
-<!-- KONTEN DASHBOARD -->
-<section class="py-5">
-  <div class="container">
-    <h2 class="fw-bold">
-      Selamat Datang, <?= session()->get('name') ?? 'Pengunjung' ?>!
-    </h2>
-</section>
 
-<!-- SEMUA PRODUK -->
-<section class="py-5 bg-light">
+
+<!-- PROMO CAROUSEL -->
+<div id="promoCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <?php for ($i = 1; $i <= 4; $i++): ?>
+      <div class="carousel-item <?= $i === 1 ? 'active' : '' ?>">
+        <img src="<?= base_url('images/iklan' . $i . '.png') ?>" class="d-block w-100" alt="Promo <?= $i ?>">
+      </div>
+    <?php endfor; ?>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#promoCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#promoCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- PRODUK -->
+<section id="produk" class="py-5 bg-light">
   <div class="container">
     <h2 class="text-center mb-4" data-aos="fade-up">Semua Produk</h2>
     <div class="row g-4">
@@ -143,9 +217,8 @@
   </div>
 </section>
 
-
 <!-- FOOTER -->
-<?= view('footer') ?>
+<?= $this->include('footer') ?>
 
 <!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
