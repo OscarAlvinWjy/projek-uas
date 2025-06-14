@@ -17,4 +17,7 @@ $routes->get('/produk/(:num)', 'Product::detail/$1');
 $routes->get('/keranjang', 'Cart::index');
 $routes->get('/keranjang/tambah/(:num)', 'Cart::add/$1');
 $routes->get('/keranjang/hapus/(:num)', 'Cart::remove/$1'); // opsional
+$routes->get('/checkout', 'Cart::checkout');
+$routes->get('/pembayaran/(:num)', 'Cart::pembayaran/$1');
+$routes->post('/proses-bayar', 'Cart::prosesBayar');
 

@@ -60,7 +60,10 @@
     </table>
 
     <h4>Total: Rp <?= number_format($total, 0, ',', '.') ?></h4>
-    <button class="btn btn-success">Checkout</button>
+    <div class="text-end mt-4">
+  <a href="<?= base_url('/checkout') ?>" class="btn btn-success">Checkout Sekarang</a>
+</div>
+
   <?php endif; ?>
 </div>
 
