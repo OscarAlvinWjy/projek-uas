@@ -79,7 +79,7 @@ public function add($id)
 
         return redirect()->to('/keranjang')->with('success', 'Produk dihapus dari keranjang.');
     }
-    public function checout()
+    public function checkout()
     {
         $session = session();
 
