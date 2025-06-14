@@ -81,6 +81,7 @@ public function add($id)
     }
     public function checkout()
     {
+        dd('Checkout method called');
         $session = session();
 
         if (!session()->get('logged_in')) {
