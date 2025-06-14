@@ -130,7 +130,7 @@
 
   <!-- Pesanan -->
   <li class="nav-item me-3">
-    <a class="nav-link text-white fw-semibold" href="<?= base_url('/transaksi') ?>">
+    <a class="nav-link text-white fw-semibold" href="<?= base_url('/riwayat') ?>">
       <i class="fas fa-box me-1"></i> Pesanan
     </a>
   </li>
@@ -142,7 +142,7 @@
         <i class="fas fa-user me-1"></i><?= esc(session('name')) ?>
       </a>
       <ul class="dropdown-menu dropdown-menu-end animate__animated animate__fadeIn">
-        <li><a class="dropdown-item" href="<?= base_url('/transaksi') ?>"><i class="fas fa-clock-rotate-left me-2"></i>Riwayat</a></li>
+        <li><a class="dropdown-item" href="<?= base_url('/riwayat') ?>"><i class="fas fa-clock-rotate-left me-2"></i>Riwayat</a></li>
         <li><a class="dropdown-item" href="<?= base_url('/logout') ?>"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
       </ul>
     </li>

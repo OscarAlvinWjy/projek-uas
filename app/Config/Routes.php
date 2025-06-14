@@ -11,7 +11,6 @@ $routes->post('/login', 'Auth::attemptLogin');
 $routes->get('/register', 'Auth::register');
 $routes->post('/register', 'Auth::attemptRegister');
 $routes->get('/dashboard', 'Dashboard::index');
-$routes->get('/', 'Dashboard::index');
 $routes->get('/logout', 'Auth::logout');
 $routes->get('/produk/(:num)', 'Product::detail/$1');
 $routes->get('/keranjang', 'Cart::index');
@@ -25,3 +24,5 @@ $routes->post('/proses-bayar', 'Cart::prosesBayar');
 
 $routes->get('/checkout', 'Checkout::index', ['filter' => 'auth']); 
 $routes->post('/checkout/process', 'Checkout::processPayment');
+$routes->get('/riwayat', 'Transaksi::index', ['filter' => 'auth']);
+$routes->get('/riwayat/detail/(:num)', 'Transaksi::detail/$1', ['filter' => 'auth']);
