@@ -14,12 +14,12 @@
     <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
   <?php endif; ?>
 
-<!-- Tombol Kembali -->
+  <!-- Tombol Kembali -->
 <div class="container mt-4">
   <?php if ($keranjangFrom === 'detail' && $lastProductId): ?>
-    <a href="<?= base_url('/produk/' . $lastProductId) ?>" class="btn btn-secondary mb-4">Kembali</a>
+    <a href="<?= base_url('/produk/' . $lastProductId) ?>" class="btn btn-secondary mb-4">← Kembali ke Detail Produk</a>
   <?php else: ?>
-    <a href="<?= base_url('/dashboard') ?>" class="btn btn-secondary mb-4">Kembali</a>
+    <a href="<?= base_url('/dashboard') ?>" class="btn btn-secondary mb-4">← Kembali ke Dashboard</a>
   <?php endif; ?>
 </div>
 
@@ -53,7 +53,6 @@
             <td>Rp <?= number_format($subTotal, 0, ',', '.') ?></td>
             <td>
               <a href="<?= base_url('/keranjang/hapus/' . $item['id']) ?>" class="btn btn-sm btn-danger">Hapus</a>
-              
             </td>
           </tr>
         <?php endforeach; ?>
@@ -61,7 +60,10 @@
     </table>
 
     <h4>Total: Rp <?= number_format($total, 0, ',', '.') ?></h4>
-    <a href="<?= base_url('/checkout') ?>" class="btn btn-success">Checkout</a>
+    <div class="text-end mt-4">
+  <a href="<?= base_url('/checkout') ?>" class="btn btn-success">Checkout Sekarang</a>
+</div>
+
   <?php endif; ?>
 </div>
 

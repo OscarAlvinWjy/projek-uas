@@ -19,7 +19,7 @@
       <p class="text-muted"><?= esc($product['description']) ?></p>
       <p class="h4 fw-bold text-maroon">Rp <?= number_format($product['price'], 0, ',', '.') ?></p>
       <p><strong>Stok:</strong> <?= $product['stock'] ?></p>
-      <a href="<?= base_url('/keranjang/tambah/' . $product['id'] . '?from=detail') ?>" class="btn btn-outline-secondary">Tambah ke Keranjang</a>
+      <a href="<?= base_url('/keranjang/tambah/' . $product['id'] . '?from=detail') ?>" class="btn btn-maroon">Tambah ke Keranjang</a>
     </div>
   </div>
 </div>
