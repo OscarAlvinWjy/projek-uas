@@ -13,4 +13,8 @@ $routes->post('/register', 'Auth::attemptRegister');
 $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/', 'Dashboard::index');
 $routes->get('/logout', 'Auth::logout');
+$routes->get('/produk/(:num)', 'Product::detail/$1');
+$routes->get('/keranjang', 'Cart::index');
+$routes->get('/keranjang/tambah/(:num)', 'Cart::add/$1');
+$routes->get('/keranjang/hapus/(:num)', 'Cart::remove/$1'); // opsional
 

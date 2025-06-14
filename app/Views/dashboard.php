@@ -77,7 +77,7 @@
       <ul class="navbar-nav align-items-center">
         <!-- Ikon keranjang -->
         <li class="nav-item me-3 position-relative">
-          <a href="<?= base_url('/keranjang') ?>" class="nav-link text-white">
+          <a href="<?= base_url('/keranjang?from=dashboard') ?>" class="nav-link text-white">
             <i class="fas fa-shopping-cart"></i>
             <?php $jumlah = session()->get('cart_count') ?? 0; ?>
             <?php if ($jumlah > 0): ?>
@@ -134,7 +134,7 @@
               <p class="card-text small text-muted"><?= esc(word_limiter($product['description'], 10)) ?></p>
               <p class="card-text fw-bold text-maroon">Rp <?= number_format($product['price'], 0, ',', '.') ?></p>
               <p class="card-text"><small>Stok: <?= $product['stock'] ?></small></p>
-              <a href="#" class="btn btn-sm btn-outline-primary">Lihat Detail</a>
+              <a href="<?= base_url('/produk/' . $product['id']) ?>" class="btn btn-sm btn-outline-primary">Lihat Detail</a>
             </div>
           </div>
         </div>
