@@ -18,3 +18,5 @@ $routes->get('/keranjang', 'Cart::index');
 $routes->get('/keranjang/tambah/(:num)', 'Cart::add/$1');
 $routes->get('/keranjang/hapus/(:num)', 'Cart::remove/$1'); // opsional
 
+$routes->get('/checkout', 'Checkout::index', ['filter' => 'auth']); 
+$routes->post('/checkout/processOrder', 'Checkout::processOrder', ['filter' => 'auth']);

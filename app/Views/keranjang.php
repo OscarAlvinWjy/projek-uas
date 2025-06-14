@@ -53,6 +53,7 @@
             <td>Rp <?= number_format($subTotal, 0, ',', '.') ?></td>
             <td>
               <a href="<?= base_url('/keranjang/hapus/' . $item['id']) ?>" class="btn btn-sm btn-danger">Hapus</a>
+              
             </td>
           </tr>
         <?php endforeach; ?>
@@ -60,7 +61,7 @@
     </table>
 
     <h4>Total: Rp <?= number_format($total, 0, ',', '.') ?></h4>
-    <button class="btn btn-success">Checkout</button>
+    <a href="<?= base_url('/checkout') ?>" class="btn btn-success">Checkout</a>
   <?php endif; ?>
 </div>
 
