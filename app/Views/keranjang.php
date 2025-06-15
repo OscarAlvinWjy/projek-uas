@@ -36,15 +36,16 @@
       border-radius: 8px;
     }
 
-    .back-btn {
-      margin-bottom: 20px;
-    }
-
     .total-box {
       background: white;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    }
+
+    .qty-form input {
+      width: 50px;
+      text-align: center;
     }
   </style>
 </head>
@@ -56,18 +57,6 @@
   <?php if (session()->getFlashdata('success')): ?>
     <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
   <?php endif; ?>
-
-  <div class="back-btn">
-    <?php if ($keranjangFrom === 'detail' && $lastProductId): ?>
-      <a href="<?= base_url('/produk/' . $lastProductId) ?>" class="btn btn-secondary">
-        <i class="fas fa-arrow-left"></i> Kembali ke Detail Produk
-      </a>
-    <?php else: ?>
-      <a href="<?= base_url('/dashboard') ?>" class="btn btn-secondary">
-        <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
-      </a>
-    <?php endif; ?>
-  </div>
 
   <?php if (empty($cart)): ?>
     <div class="alert alert-info text-center py-4">
@@ -98,7 +87,13 @@
               <td><img src="<?= base_url('images/' . $item['image']) ?>" class="product-img" alt=""></td>
               <td><?= esc($item['name']) ?></td>
               <td>Rp <?= number_format($item['price'], 0, ',', '.') ?></td>
-              <td><?= $item['qty'] ?></td>
+              <td>
+                <form method="post" action="<?= base_url('/keranjang/update/' . $item['id']) ?>" class="d-flex align-items-center qty-form">
+                  <button type="submit" name="action" value="decrease" class="btn btn-sm btn-outline-secondary me-1" <?= $item['qty'] <= 1 ? 'disabled' : '' ?>>−</button>
+                  <input type="text" name="qty" value="<?= $item['qty'] ?>" class="form-control form-control-sm" readonly>
+                  <button type="submit" name="action" value="increase" class="btn btn-sm btn-outline-secondary ms-1" <?= $item['qty'] >= ($item['stock'] ?? 99) ? 'disabled' : '' ?>>+</button>
+                </form>
+              </td>
               <td>Rp <?= number_format($subTotal, 0, ',', '.') ?></td>
               <td>
                 <a href="<?= base_url('/keranjang/hapus/' . $item['id']) ?>" class="btn btn-sm btn-danger">
