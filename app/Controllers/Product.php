@@ -8,13 +8,21 @@ class Product extends BaseController
 {
     public function detail($id)
     {
-        $model = new ProductModel();
-        $product = $model->find($id);
+        $productModel = new ProductModel();
+        $product = $productModel->find($id);
 
         if (!$product) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Produk tidak ditemukan");
+            return redirect()->to('/dashboard')->with('error', 'Produk tidak ditemukan.');
         }
 
-        return view('produk_detail', ['product' => $product]);
+        // Cari produk sebelumnya dan selanjutnya
+        $prev = $productModel->where('id <', $id)->orderBy('id', 'desc')->first();
+        $next = $productModel->where('id >', $id)->orderBy('id', 'asc')->first();
+
+        return view('produk_detail', [
+            'product' => $product,
+            'prevProductId' => $prev ? $prev['id'] : null,
+            'nextProductId' => $next ? $next['id'] : null
+        ]);
     }
 }

@@ -86,6 +86,50 @@
       padding: 4px 8px;
       font-size: 0.75rem;
     }
+
+    /* Navigasi Panah */
+    .nav-arrow {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      width: 42px;
+      height: 42px;
+      background-color: rgba(255, 255, 255, 0.85);
+      color: #800000;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.3rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: 0.3s ease;
+      text-decoration: none;
+    }
+
+    .nav-arrow:hover {
+      background-color: #800000;
+      color: #fff;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .nav-arrow.left { left: 16px; }
+    .nav-arrow.right { right: 16px; }
+
+    .fade-anim {
+      animation: fadeSlide 0.5s ease-in-out;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body>
@@ -110,7 +154,6 @@
             <li><a class="dropdown-item" href="<?= base_url('/kategori/wanita') ?>"><i class="fas fa-venus me-2"></i>Wanita</a></li>
           </ul>
         </li>
-
         <li class="nav-item me-3"><a class="nav-link text-white" href="<?= base_url('/tentang') ?>"><i class="fas fa-info-circle me-1"></i> Tentang</a></li>
         <li class="nav-item me-3"><a class="nav-link text-white" href="<?= base_url('/kontak') ?>"><i class="fas fa-phone me-1"></i> Kontak</a></li>
         <li class="nav-item me-3"><a class="nav-link text-white" href="<?= base_url('/riwayat') ?>"><i class="fas fa-box me-1"></i> Pesanan</a></li>
@@ -141,9 +184,21 @@
   </div>
 </nav>
 
+<!-- NAVIGASI PANAH -->
+<?php if (!empty($prevProductId)): ?>
+  <a href="<?= base_url('/produk/' . $prevProductId) ?>" class="nav-arrow left">
+    <i class="fas fa-chevron-left"></i>
+  </a>
+<?php endif; ?>
+<?php if (!empty($nextProductId)): ?>
+  <a href="<?= base_url('/produk/' . $nextProductId) ?>" class="nav-arrow right">
+    <i class="fas fa-chevron-right"></i>
+  </a>
+<?php endif; ?>
+
 <!-- DETAIL PRODUK -->
 <div class="container py-5">
-  <div class="row g-5 align-items-center">
+  <div class="row g-5 align-items-center fade-anim">
     <div class="col-md-6">
       <img src="<?= base_url('images/' . $product['image']) ?>" class="img-fluid img-preview" alt="<?= esc($product['name']) ?>">
     </div>

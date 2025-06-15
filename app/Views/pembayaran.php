@@ -170,7 +170,7 @@
 
 <!-- PRODUK YANG AKAN DIBAYAR -->
 <div class="mt-5">
-  <h5 class="mb-3 text-maroon text-center"><i class="fas fa-box-open me-2"></i>List Produk</h5>
+  <h5 class="mb-3 text-maroon text-center"><i class="fas fa-box-open me-2"></i>LIST PRODUK YANG AKAN DIBAYAR</h5>
   <div class="table-responsive">
     <table class="table table-hover table-bordered align-middle bg-white shadow-sm rounded-3">
       <thead class="table-light text-center">

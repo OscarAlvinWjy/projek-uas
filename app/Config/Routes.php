@@ -29,3 +29,5 @@ $routes->post('/proses-bayar', 'Cart::prosesBayar');
 
 $routes->get('/riwayat', 'Transaksi::index', ['filter' => 'auth']);
 $routes->get('/riwayat/detail/(:num)', 'Transaksi::detail/$1', ['filter' => 'auth']);
+
+$routes->get('/produk/(:num)', 'Product::detail/$1');
