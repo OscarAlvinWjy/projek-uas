@@ -11,8 +11,6 @@ class Cart extends BaseController
     public function index()
     {
         $session = session();
-
-        // Simpan asal halaman hanya kalau dikirim dari query string
         $from = $this->request->getGet('from');
         if ($from) {
             $session->set('keranjang_from', $from);
@@ -203,13 +201,24 @@ class Cart extends BaseController
     public function pembayaran($id)
     {
         $transaksiModel = new TransaksiModel();
-        $transaksi = $transaksiModel->find($id);
+        $detailModel = new TransaksiDetailModel();
 
+        $transaksi = $transaksiModel->find($id);
         if (!$transaksi) {
             return redirect()->to('/dashboard')->with('error', 'Transaksi tidak ditemukan.');
         }
 
-        return view('pembayaran', ['transaksi' => $transaksi]);
+        // JOIN untuk ambil gambar produk
+        $produkDibeli = $detailModel
+            ->select('transaksi_detail.*, products.image')
+            ->join('products', 'products.id = transaksi_detail.produk_id')
+            ->where('transaksi_id', $id)
+            ->findAll();
+
+        return view('pembayaran', [
+            'transaksi' => $transaksi,
+            'produkDibeli' => $produkDibeli
+        ]);
     }
 
     public function prosesBayar()
@@ -218,5 +227,43 @@ class Cart extends BaseController
         $transaksiId = $this->request->getPost('transaksi_id');
 
         return view('pembayaran_sukses', ['metode' => $metode]);
+    }
+
+    public function beliSekarang($id)
+    {
+        $session = session();
+        $model = new ProductModel();
+        $product = $model->find($id);
+
+        if (!$product) {
+            return redirect()->to('/dashboard')->with('error', 'Produk tidak ditemukan.');
+        }
+
+        if ($product['stock'] <= 0) {
+            return redirect()->to('/produk/' . $id)->with('error', 'Stok produk habis.');
+        }
+
+        $userId = $session->get('user_id');
+        if (!$userId) {
+            return redirect()->to('/login')->with('error', 'Silakan login untuk melakukan pembelian.');
+        }
+
+        $transaksiModel = new TransaksiModel();
+        $transaksiId = $transaksiModel->insert([
+            'user_id' => $userId,
+            'total' => $product['price'],
+            'tanggal' => date('Y-m-d H:i:s')
+        ]);
+
+        $detailModel = new TransaksiDetailModel();
+        $detailModel->insert([
+            'transaksi_id' => $transaksiId,
+            'produk_id' => $product['id'],
+            'nama_produk' => $product['name'],
+            'harga' => $product['price'],
+            'qty' => 1
+        ]);
+
+        return redirect()->to('/pembayaran/' . $transaksiId);
     }
 }

@@ -24,6 +24,7 @@ $routes->get('/keranjang/ajax-tambah/(:num)', 'Cart::ajaxTambah/$1');
 
 $routes->get('/checkout', 'Cart::checkout');
 $routes->get('/pembayaran/(:num)', 'Cart::pembayaran/$1');
+$routes->get('/beli-sekarang/(:num)', 'Cart::beliSekarang/$1');
 $routes->post('/proses-bayar', 'Cart::prosesBayar');
 
 $routes->get('/riwayat', 'Transaksi::index', ['filter' => 'auth']);

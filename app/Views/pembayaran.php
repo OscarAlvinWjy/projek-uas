@@ -81,6 +81,11 @@
     .metode-option input[type="radio"] {
       display: none;
     }
+
+    .table th, .table td {
+  vertical-align: middle;
+}
+
   </style>
 </head>
 <body>
@@ -160,6 +165,37 @@
         </form>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- PRODUK YANG AKAN DIBAYAR -->
+<div class="mt-5">
+  <h5 class="mb-3 text-maroon text-center"><i class="fas fa-box-open me-2"></i>List Produk</h5>
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered align-middle bg-white shadow-sm rounded-3">
+      <thead class="table-light text-center">
+        <tr>
+          <th>Gambar</th>
+          <th>Produk</th>
+          <th>Harga</th>
+          <th>Jumlah</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($produkDibeli as $item): ?>
+          <tr>
+            <td class="text-center">
+              <img src="<?= base_url('images/' . $item['image']) ?>" alt="<?= esc($item['nama_produk']) ?>" class="img-thumbnail rounded" style="width: 60px; height: 60px; object-fit: cover;">
+            </td>
+            <td><?= esc($item['nama_produk']) ?></td>
+            <td class="text-end">Rp <?= number_format($item['harga'], 0, ',', '.') ?></td>
+            <td class="text-center"><?= $item['qty'] ?></td>
+            <td class="text-end fw-bold">Rp <?= number_format($item['harga'] * $item['qty'], 0, ',', '.') ?></td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
   </div>
 </div>
 
