@@ -197,10 +197,7 @@ class Cart extends BaseController
         $session->remove('last_product_id');
         $session->remove('keranjang_from');
 
-        return view('checkout_sukses', [
-            'total' => $total,
-            'transaksi_id' => $transaksiId
-        ]);
+        return redirect()->to('/pembayaran/' . $transaksiId);
     }
 
     public function pembayaran($id)
